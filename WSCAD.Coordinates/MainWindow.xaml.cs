@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,9 @@ namespace WSCAD.Coordinates
       };
 
       ShapeReader shapeReader = new ShapeReader(new JsonDeserializer(), typeCommands);
-      List<ShapeDef> shapes = shapeReader.GetObjectsFromFile(@"C:\Users\jamal\Desktop\shapes.json");
+
+      var dataDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Data\shapes.json";
+      List<ShapeDef> shapes = shapeReader.GetObjectsFromFile(dataDirectory);
 
       Draw(shapes, mainCanvas);
     }
